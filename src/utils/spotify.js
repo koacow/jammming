@@ -1,32 +1,39 @@
-export const songs = [
-    {
-        name: "name1",
-        artist: "artist1",
-        album: "album1",
-        id: 1
-    },
-    {
-        name: "name2",
-        artist: "artist2",
-        album: "album2",
-        id: 2
-    },
-    {
-        name: "name3",
-        artist: "artist3",
-        album: "album3",
-        id: 3
-    },
-    {
-        name: "name4",
-        artist: "artist4",
-        album: "album4",
-        id: 4
-    },
-    {
-        name: "name5",
-        artist: "artist5",
-        album: "album5",
-        id: 5
-    }
-]
+export const api = {
+    songs: [
+        {
+            id: 1,
+            title: 'Song 1',
+            artist: 'Artist 1',
+            album: 'Album 1',
+            duration: '3:45'
+        },
+        {
+            id: 2,
+            title: 'Song 2',
+            artist: 'Artist 2',
+            album: 'Album 2',
+            duration: '4:20'
+        },
+        {
+            id: 3,
+            title: 'Song 3',
+            artist: 'Artist 3',
+            album: 'Album 3',
+            duration: '5:00'
+        },
+        {
+            id: 4,
+            title: 'Song 4',
+            artist: 'Artist 4',
+            album: 'Album 4',
+            duration: '3:30'
+        },
+        {
+            id: 5,
+            title: 'Song 5',
+            artist: 'Artist 5',
+            album: 'Album 5',
+            duration: '4:50'
+        }
+    ]
+}
