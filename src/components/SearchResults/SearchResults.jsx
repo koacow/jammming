@@ -7,7 +7,13 @@ export function SearchResults({ filteredTracks, setPlaylist }) {
             {
                 filteredTracks &&  filteredTracks.map((track, index) => {
                     return (
-                        <Track setPlaylist={setPlaylist} key={index} name={track.name} artist={track.artist} album={track.album} id={track.id} />
+                        <Track setPlaylist={setPlaylist}
+                        key={index}
+                        name={track.name}
+                        artist={track.artist}
+                        album={track.album}
+                        id={track.id}
+                        uri={track.uri} />
                     )
                 })
             }

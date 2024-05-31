@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { SearchResults } from "../components/SearchResults/SearchResults";
 import { Playlist } from "../components/Playlist/Playlist";
 import { SearchBar } from "../components/SearchBar/SearchBar";
 import {getApiData} from "../utils/spotify.js";
 
-function Root(){
+function Root({ isLoggedIn }){
     const [filteredTracks, setFilteredTracks ] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [playlist, setPlaylist] = useState([]);
@@ -15,12 +16,16 @@ function Root(){
         if (searchTerm === "") {
             return;
         }
-        const data = await getApiData();
-        setFilteredTracks(data.filter((track) => {
-            return track.name.toLowerCase().includes(searchTerm.toLowerCase());
-        }));
+        const queryString = searchTerm.split(" ").join("+");
+        const data = await getApiData(queryString);
+        setFilteredTracks(data);
         setSearchTerm("");
     }
+
+    if (!isLoggedIn) {
+        return <Navigate to="/login" />;
+    }
+    
     return (
         <>
             <SearchBar searchForTracks={searchForTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

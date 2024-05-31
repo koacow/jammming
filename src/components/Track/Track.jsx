@@ -1,13 +1,13 @@
 import React from 'react';
 
-export function Track({ name, artist, album, id, setPlaylist }){
+export function Track({ name, artist, album, id, setPlaylist, uri }){
 
     const handleClick = () => {
         setPlaylist((prev) => {
             if (prev.some((track) => track.id === id)) {
                 return prev.filter((track) => track.id !== id);
             } else{
-                return [...prev, {name, artist, album, id}];
+                return [...prev, {name, artist, album, id, uri}];
             }
         });
     }
