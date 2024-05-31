@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SearchResults } from "../components/SearchResults/SearchResults";
 import { Playlist } from "../components/Playlist/Playlist";
 import { SearchBar } from "../components/SearchBar/SearchBar";
-import {api} from "../utils/spotify.js";
+import {getApiData} from "../utils/spotify.js";
 
 function Root(){
-    const [filteredSongs, setFilteredSongs ] = useState([]);
+    const [filteredTracks, setFilteredTracks ] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedSongs, setSelectedSongs] = useState([]);
+    const [playlist, setPlaylist] = useState([]);
+    const [playlistName, setPlaylistName] = useState("");
 
-    const searchForSongs = (e) => {
+    const searchForTracks = async (e) => {
         e.preventDefault();
+        if (searchTerm === "") {
+            return;
+        }
+        const data = await getApiData(searchTerm);
+        console.log(data)
+        setFilteredTracks(data);
+        setSearchTerm("");
     }
-
-    const addToPlaylist = (song) => {
-        setSelectedSongs([...selectedSongs, song]);
-    }
-
     return (
         <>
-            <SearchBar handleSubmit={searchForSongs} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <SearchResults filteredSongs={filteredSongs}/>
-            <Playlist selectedSongs={selectedSongs} setSelectedSongs={setSelectedSongs}/>
+            <SearchBar searchForTracks={searchForTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <SearchResults filteredTracks={filteredTracks} setPlaylist={setPlaylist}/>
+            <Playlist playlist={playlist} setPlaylist={setPlaylist} playlistName={playlistName} setPlaylistName={setPlaylistName} />
         </>
     )
 }

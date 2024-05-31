@@ -7,7 +7,7 @@ import { Root } from './Root';
 function App() {
   const appRouter = createBrowserRouter(createRoutesFromElements(
     <Route path ='/' element={<Root></Root>}>
-      <Route path='about' element={<About></About>}></Route>
+      <Route path='/about' element={<About></About>}></Route>
     </Route>
   ));
   return (

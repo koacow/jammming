@@ -1,12 +1,13 @@
 import React from 'react';
+import { Track } from '../Track/Track';
 
-export function SearchResults({ filteredSongs }) {
+export function SearchResults({ filteredTracks, setPlaylist }) {
     return (
         <>
             {
-                filteredSongs && filteredSongs.map((song, index) => {
+                filteredTracks &&  filteredTracks.map((track, index) => {
                     return (
-                        <h2 key={index}>{song.name} | {song.artist} | {song.playlist}</h2>
+                        <Track setPlaylist={setPlaylist} key={index} name={track.name} artist={track.artist} album={track.album} id={track.id} />
                     )
                 })
             }
