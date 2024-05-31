@@ -15,9 +15,10 @@ function Root(){
         if (searchTerm === "") {
             return;
         }
-        const data = await getApiData(searchTerm);
-        console.log(data)
-        setFilteredTracks(data);
+        const data = await getApiData();
+        setFilteredTracks(data.filter((track) => {
+            return track.name.toLowerCase().includes(searchTerm.toLowerCase());
+        }));
         setSearchTerm("");
     }
     return (
