@@ -2,7 +2,7 @@
 const fetchSongsEndpoint = (query) => `https://api.spotify.com/v1/search?type=track&q=${query}`
 const createPlaylistEndpoint = (userId) => `https://api.spotify.com/v1/users/${userId}/playlists`
 const addToPlaylistEndpoint = (playlistId) => `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
-const accessToken = ''
+const access_token = ''
 
 export async function getApiData(queryString) {
     try {
@@ -23,7 +23,7 @@ export async function createSpotifyPlaylist(playlistName, userId) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+                'Authorization': `Bearer ${access_token}`
             },
             body: JSON.stringify({
                 name: playlistName,
@@ -47,7 +47,7 @@ export async function addToSpotifyPlaylist(playlistId, tracks) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+                'Authorization': `Bearer ${access_token}`
             },
             body: JSON.stringify({
                 uris: tracks.map(track => track.uri)
