@@ -6,12 +6,11 @@ import { LogIn } from '../components/Auth/LogIn';
 import { Root } from './Root';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const appRouter = createBrowserRouter(createRoutesFromElements([
-    <Route path ='/' element={<Root isLoggedIn={isLoggedIn}></Root>}></Route>,
-    <Route path='/login' element={<LogIn isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}></LogIn>}></Route>,
-    <Route path='/about' element={<About></About>}></Route>
+    <Route path ='/' element={<Root />}></Route>,
+    <Route path='/login' element={<LogIn />}></Route>,
+    <Route path='/about' element={<About />}></Route>
   ]));
   return (
     <>

@@ -1,12 +1,21 @@
 
+import { currentToken } from "../components/Auth/auth"
+
 const fetchSongsEndpoint = (query) => `https://api.spotify.com/v1/search?type=track&q=${query}`
 const createPlaylistEndpoint = (userId) => `https://api.spotify.com/v1/users/${userId}/playlists`
 const addToPlaylistEndpoint = (playlistId) => `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
-const access_token = ''
+const access_token = currentToken.access_token
 
 export async function getApiData(queryString) {
+    console.log(access_token)
     try {
-        const response = await fetch(fetchSongsEndpoint(queryString));
+        const response = await fetch(fetchSongsEndpoint(queryString), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
         if (response.ok) {
             return response.json();
         } else {
