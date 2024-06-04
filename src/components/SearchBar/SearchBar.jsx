@@ -1,4 +1,7 @@
 import React from "react";
+import "./SearchBar.css";
+import { faSearch }  from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function SearchBar({ searchForTracks, searchTerm, setSearchTerm }) {
 
@@ -7,11 +10,11 @@ export function SearchBar({ searchForTracks, searchTerm, setSearchTerm }) {
     }
 
     return (
-        <>
+        <div className="SearchBar">
             <form onSubmit={searchForTracks}>
                 <input type="text" placeholder="Let's look for some jams" value={searchTerm} onChange={handleChange} />
-                <button type="submit">Search</button>
+                <FontAwesomeIcon className="search-icon" icon={faSearch} onClick={searchForTracks} />
             </form>
-        </>
+        </div>
     )
 }

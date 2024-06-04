@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import './App.css';
 import { About } from '../components/About/About';
 import { LogIn } from '../components/Auth/LogIn';
 import { Root } from './Root';

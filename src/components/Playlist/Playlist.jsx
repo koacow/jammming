@@ -1,5 +1,6 @@
 import React from 'react';
 import {TrackList} from '../TrackList/TrackList';
+import './Playlist.css';
 
 export function Playlist({ playlist, setPlaylist, playlistName, setPlaylistName }) {
     const handleChange = (e) => {
@@ -18,12 +19,12 @@ export function Playlist({ playlist, setPlaylist, playlistName, setPlaylistName 
         setPlaylist([]);
     }
     return (
-        <>
+        <div className='Playlist'>
             <form onSubmit={saveToSpotify}>
                 <input type='text' placeholder='What shall we call this wonderful playlist?' value={playlistName} onChange={handleChange}/>
                 <TrackList playlist={playlist} setPlaylist={setPlaylist} />
-                <button type='submit'>Save to Spotify</button>
+                <button type='submit'>SAVE TO SPOTIFY</button>
             </form>
-        </>
+        </div>
     )
 }

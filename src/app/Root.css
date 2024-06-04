@@ -1,0 +1,43 @@
+@import url("https://use.typekit.net/cia3thx.css");
+
+.Root {
+  font-family: "alkaline", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.title {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.title .highlight {
+  color: #1db954;
+}  
+
+.container {
+    display: flex;
+    gap: 2rem;
+    width: 70%;
+}
+
+.SearchResults, .Playlist {
+    background-color: hsla(0, 0%, 0%, 0.8);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.SearchResults {
+    flex-basis: 40rem;
+    flex-grow: 2;
+}
+
+.Playlist {
+    flex-grow: 1;
+    flex-basis: 20rem;
+}
+

@@ -3,7 +3,9 @@ import { Track } from '../Track/Track';
 
 export function SearchResults({ filteredTracks, setPlaylist }) {
     return (
-        <>
+        <div className='SearchResults'>
+            <h2>Results</h2>
+            <hr />
             {
                 filteredTracks &&  filteredTracks.map((track, index) => {
                     return (
@@ -17,6 +19,6 @@ export function SearchResults({ filteredTracks, setPlaylist }) {
                     )
                 })
             }
-        </>
+        </div>
     )
 }

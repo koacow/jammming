@@ -51,6 +51,8 @@ export function getRedirectToSpotifyAuthorize() {
 export async function getAccessToken(code) {
   // Get the code verifier from cookie
   const code_verifier = Cookies.get('code_verifier');
+  console.log(`code: ${code}`)
+  console.log(`code_verifier: ${code_verifier}`)
 
   // Construct request body
   const params = new URLSearchParams()

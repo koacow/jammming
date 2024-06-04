@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getRedirectToSpotifyAuthorize, currentToken, getAccessToken } from './auth';
+import { getRedirectToSpotifyAuthorize, getAccessToken } from './auth';
 import Cookies from 'js-cookie';
 
 export function LogIn(){
