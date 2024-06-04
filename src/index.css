@@ -2,6 +2,11 @@ body {
   margin: 0;
   padding: 0;
   background-color: blueviolet;
+  box-sizing: border-box;
+}
+
+h1{
+  font-size: 5rem;
 }
 
 

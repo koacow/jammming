@@ -12,13 +12,13 @@ form input {
     padding: 1rem;
     margin: 1rem 0.5rem 1rem 0;
     border: 0;
-    background-color: #000;
+    background-color: inherit;
     color: #fff;
 }
 
 form input:focus {
     outline: none;
-    border-bottom: 5px solid #1db954;
+    border-bottom: 1px solid #1db954;
 }
 
 form button {
@@ -36,4 +36,8 @@ form button:hover {
     background-color: #000;
     color: #1db954;
     border: 3px solid #1db954;
+}
+
+form hr {
+    width: 100%;
 }

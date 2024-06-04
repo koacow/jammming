@@ -13,7 +13,6 @@ export function Playlist({ playlist, setPlaylist, playlistName, setPlaylistName 
             name: playlistName,
             tracks: playlist
         }
-        console.log(playlistData);
         // Call the Spotify API to save the playlist
         setPlaylistName("");
         setPlaylist([]);
@@ -22,6 +21,7 @@ export function Playlist({ playlist, setPlaylist, playlistName, setPlaylistName 
         <div className='Playlist'>
             <form onSubmit={saveToSpotify}>
                 <input type='text' placeholder='What shall we call this wonderful playlist?' value={playlistName} onChange={handleChange}/>
+                <hr />
                 <TrackList playlist={playlist} setPlaylist={setPlaylist} />
                 <button type='submit'>SAVE TO SPOTIFY</button>
             </form>

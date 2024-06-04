@@ -1,5 +1,4 @@
 @import url("https://use.typekit.net/cia3thx.css");
-
 .Root {
   font-family: "alkaline", sans-serif;
   display: flex;
@@ -40,4 +39,11 @@
     flex-grow: 1;
     flex-basis: 20rem;
 }
+
+input, .Track{
+    font-family: "gigalypse", sans-serif;
+
+}
+
+
 

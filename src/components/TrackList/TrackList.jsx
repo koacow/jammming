@@ -1,9 +1,10 @@
 import React from "react";
 import { Track } from "../Track/Track";
+import "./TrackList.css";
 
 export function TrackList({ playlist, setPlaylist }) {
     return (
-        <>
+        <div className="TrackList">
             {
                 playlist && playlist.map((track, index) => {
                     return (
@@ -16,7 +17,8 @@ export function TrackList({ playlist, setPlaylist }) {
                         uri={track.uri} />
                     )
                 })
+                
             }
-        </>
+        </div>
     )
 }

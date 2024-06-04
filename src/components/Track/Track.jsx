@@ -1,4 +1,5 @@
 import React from 'react';
+import './Track.css';
 
 export function Track({ name, artist, album, id, setPlaylist, uri }){
 
@@ -12,7 +13,7 @@ export function Track({ name, artist, album, id, setPlaylist, uri }){
         });
     }
     return (
-        <div className='track' onClick={handleClick}>
+        <div className='Track' onClick={handleClick}>
             <h2>{name}</h2>
             <p>{artist} | {album}</p>
         </div>
