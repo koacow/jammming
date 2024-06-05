@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { SearchResults } from "../components/SearchResults/SearchResults";
 import { Playlist } from "../components/Playlist/Playlist";
 import { SearchBar } from "../components/SearchBar/SearchBar";
-import { getApiData } from "../utils/spotify.js";
+import { fetchSongs } from "../utils/spotify.js";
 import { currentToken } from "../components/Auth/auth";
 import Cookies from "js-cookie";
 import './Root.css';
@@ -34,8 +34,7 @@ function Root(){
         if (searchTerm === "") {
             return;
         }
-        const queryString = searchTerm.split(" ").join("+");
-        const data = await getApiData(queryString);
+        const data = await fetchSongs(queryString);
         setFilteredTracks(data);
         setSearchTerm("");
     }

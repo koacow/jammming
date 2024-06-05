@@ -6,7 +6,7 @@ const createPlaylistEndpoint = (userId) => `https://api.spotify.com/v1/users/${u
 const addToPlaylistEndpoint = (playlistId) => `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
 const access_token = currentToken.access_token
 
-export async function getApiData(queryString) {
+export async function fetchSongs(queryString) {
     console.log(access_token)
     try {
         const response = await fetch(fetchSongsEndpoint(queryString), {

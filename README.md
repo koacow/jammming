@@ -18,3 +18,7 @@ Front-end RESTful API app.
 - NPM
 - Git/Github
 - HTTP requests & responses
+
+### Future Work
+- AI-powered playlist maker
+- Add playback feature in app so that users can listen to the songs they are adding to their playlist
