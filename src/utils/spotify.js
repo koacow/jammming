@@ -71,3 +71,23 @@ export async function addToSpotifyPlaylist(playlistId, tracks) {
         console.error(error);
     }
 }
+
+export async function getUserId() {
+    try {
+        const response = await fetch('https://api.spotify.com/v1/me', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
+        if (response.ok) {
+            const json = response.json();
+            return json.id;
+        } else {
+            throw new Error(`Request error: ${response.status}`);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}

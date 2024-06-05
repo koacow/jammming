@@ -1,6 +1,6 @@
 import React from 'react';
 import {TrackList} from '../TrackList/TrackList';
-import { createSpotifyPlaylist, addToSpotifyPlaylist } from '../../utils/spotify';
+import { createSpotifyPlaylist, addToSpotifyPlaylist, getUserId } from '../../utils/spotify';
 import './Playlist.css';
 
 export function Playlist({ playlist, setPlaylist, playlistName, setPlaylistName }) {
@@ -15,6 +15,7 @@ export function Playlist({ playlist, setPlaylist, playlistName, setPlaylistName 
             tracks: playlist
         }
         // Call the Spotify API to save the playlist
+        const userId = getUserId();
         const createSpotifyPlaylistResponse = createSpotifyPlaylist(playlistName, userId);
         const playlistId = createSpotifyPlaylistResponse.id;
         addToSpotifyPlaylist(playlistId, playlist);
