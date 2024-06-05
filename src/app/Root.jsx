@@ -34,7 +34,7 @@ function Root(){
         if (searchTerm === "") {
             return;
         }
-        const data = await fetchSongs(queryString);
+        const data = await fetchSongs(searchTerm);
         setFilteredTracks(data);
         setSearchTerm("");
     }

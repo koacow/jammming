@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getRedirectToSpotifyAuthorize, getAccessToken } from './auth';
 import Cookies from 'js-cookie';
+import './LogIn.css';
 
 export function LogIn(){
     const navigate = useNavigate();
@@ -29,9 +30,12 @@ export function LogIn(){
     }, [isLoggedin, navigate]);
 
         return (
-            <>
-                <h2>Log in to start Jammming!</h2>
-                <Link to={redirectToSpotifyAuthorize}>Log in with Spotify</Link>
-            </>
+            <div className='LogIn'>
+                <h1>Ja<span className='highlight'>mmm</span>ing</h1>
+                <section>
+                    <h2>Log in to start Jammming!</h2>
+                    <Link className='redirect' to={redirectToSpotifyAuthorize}>Log in with Spotify</Link>
+                </section>
+            </div>
         )
 }

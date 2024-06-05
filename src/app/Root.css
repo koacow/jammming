@@ -20,7 +20,7 @@
 .container {
     display: flex;
     gap: 2rem;
-    width: 70%;
+    width: 90%;
 }
 
 .SearchResults, .Playlist {
