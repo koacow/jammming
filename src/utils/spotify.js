@@ -1,13 +1,12 @@
 
-import { currentToken } from "../components/Auth/auth"
+import { AUTH } from "../components/Auth/auth"
 
 const fetchSongsEndpoint = (query) => `https://api.spotify.com/v1/search?type=track&q=${query}`
 const createPlaylistEndpoint = (userId) => `https://api.spotify.com/v1/users/${userId}/playlists`
 const addToPlaylistEndpoint = (playlistId) => `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
-const access_token = currentToken.access_token
+const access_token = AUTH.getAccessToken();
 
 export async function fetchSongs(queryString) {
-    console.log(access_token)
     try {
         const response = await fetch(fetchSongsEndpoint(queryString), {
             method: 'GET',

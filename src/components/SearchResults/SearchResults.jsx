@@ -7,7 +7,7 @@ export function SearchResults({ filteredTracks, setPlaylist }) {
             <h2>Results</h2>
             <hr />
             {
-                filteredTracks &&  filteredTracks.map((track, index) => {
+                filteredTracks && filteredTracks.map((track, index) => {
                     return (
                         <Track setPlaylist={setPlaylist}
                         key={index}

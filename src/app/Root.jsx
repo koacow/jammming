@@ -9,11 +9,7 @@ import Cookies from "js-cookie";
 import './Root.css';
 
 function Root(){
-    const [filteredTracks, setFilteredTracks ] = useState([
-        {name: 'Track 1', artist: 'Artist 1', album: 'Album 1', id: '1', uri: 'uri1'},
-        {name: 'Track 2', artist: 'Artist 2', album: 'Album 2', id: '2', uri: 'uri2'},
-        {name: 'Track 3', artist: 'Artist 3', album: 'Album 3', id: '3', uri: 'uri3'}
-    ]);
+    const [filteredTracks, setFilteredTracks ] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [playlist, setPlaylist] = useState([]);
     const [playlistName, setPlaylistName] = useState("");
@@ -21,10 +17,10 @@ function Root(){
 
 
     useEffect(() => {
-        // const access_token = Cookies.get("access_token");
-        // if (access_token === 'undefined') {
-        //     navigate("/login");
-        // }
+        const access_token = localStorage.getItem("access_token");
+        if (access_token === null || access_token === undefined) {
+            navigate("/login");
+        }
 
     }, [navigate]);
 
@@ -35,7 +31,16 @@ function Root(){
             return;
         }
         const data = await fetchSongs(searchTerm);
-        setFilteredTracks(data);
+        const tracks = data.tracks.items.map(track => {
+            return {
+                name: track.name,
+                artist: track.artists[0].name,
+                album: track.album.name,
+                id: track.id,
+                uri: track.uri
+            }
+        });
+        setFilteredTracks(tracks);
         setSearchTerm("");
     }
     
