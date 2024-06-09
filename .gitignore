@@ -24,4 +24,3 @@ yarn-error.log*
 
 # secret keys
 .env
-secrets.js
