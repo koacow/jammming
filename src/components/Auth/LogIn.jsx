@@ -12,13 +12,9 @@ export function LogIn(){
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
-        const state = params.get("state");
-        console.log(`code: ${code}`);
-        console.log(`state: ${state}`);
 
         if (code) {
             getAccessToken(code).then((access_token) => {
-                console.log(access_token)
                 localStorage.setItem('access_token', access_token);
                 setIsLoggedin(true);
             });

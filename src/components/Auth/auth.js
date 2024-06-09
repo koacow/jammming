@@ -1,4 +1,4 @@
-const clientId = ''; // your clientId
+const clientId = require('./secrets') || ''; // your clientId
 const redirectUri = 'http://localhost:3000/login';        // your redirect URL - must be localhost URL and/or HTTPS
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
@@ -42,32 +42,31 @@ export function getRedirectToSpotifyAuthorize() {
     redirect_uri: redirectUri,
   };
 
-  authUrl.search = new URLSearchParams(params).toString();
+  authUrl.search = new URLSearchParams(params);
   return authUrl.toString();
 }
 
 export async function getAccessToken(code) {
-  // Get the code verifier from cookie
+  // Get the code verifier from local storage
   const code_verifier = localStorage.getItem('code_verifier');
-  console.log(`code: ${code}`)
-  console.log(`code_verifier: ${code_verifier}`)
 
-  // Construct request body
-  const params = new URLSearchParams()
-  params.append('client_id', clientId);
-  params.append('grant_type', 'authorization_code');
-  params.append('code', code);
-  params.append('redirect_uri', redirectUri);
-  params.append('code_verifier', code_verifier);
-
-  // Make the request
-  const response = await fetch(tokenEndpoint, {
+  // Construct the request body
+  const payload = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: params,
-  });
+    body: new URLSearchParams({
+      client_id: clientId,
+      grant_type: 'authorization_code',
+      code: code,
+      redirect_uri: redirectUri,
+      code_verifier: code_verifier,
+    })
+  };
+
+  // Make the request
+  const response = await fetch(tokenEndpoint, payload);
 
   try {
     if (response.ok){
