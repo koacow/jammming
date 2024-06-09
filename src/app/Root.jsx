@@ -37,7 +37,8 @@ function Root(){
                 artist: track.artists[0].name,
                 album: track.album.name,
                 id: track.id,
-                uri: track.uri
+                uri: track.uri,
+                images: track.album.images
             }
         });
         setFilteredTracks(tracks);

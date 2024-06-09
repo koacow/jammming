@@ -15,7 +15,9 @@ export function SearchResults({ filteredTracks, setPlaylist }) {
                         artist={track.artist}
                         album={track.album}
                         id={track.id}
-                        uri={track.uri} />
+                        uri={track.uri}
+                        src={track.images[2].url}
+                         />
                     )
                 })
             }
