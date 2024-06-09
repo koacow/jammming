@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getRedirectToSpotifyAuthorize, getAccessToken } from './auth';
-import Cookies from 'js-cookie';
 import './LogIn.css';
 
 export function LogIn(){
@@ -13,11 +12,14 @@ export function LogIn(){
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
+        const state = params.get("state");
+        console.log(`code: ${code}`);
+        console.log(`state: ${state}`);
 
         if (code) {
-            console.log(code)
             getAccessToken(code).then((access_token) => {
-                Cookies.set('access_token', access_token);
+                console.log(access_token)
+                localStorage.setItem('access_token', access_token);
                 setIsLoggedin(true);
             });
         }

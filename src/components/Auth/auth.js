@@ -1,13 +1,11 @@
-import Cookies from 'js-cookie';
-
-const clientId = '43dfecb8d8204e079d7400ef09f3ed41'; // your clientId
-const redirectUrl = 'http://localhost:3000/login';        // your redirect URL - must be localhost URL and/or HTTPS
+const clientId = ''; // your clientId
+const redirectUri = 'http://localhost:3000/login';        // your redirect URL - must be localhost URL and/or HTTPS
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
 const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
 
 export const currentToken = {
-    get access_token() { return Cookies.get('access_token') },
+    get access_token() { return localStorage.getItem('access_token') },
     // get refresh_token() { return localStorage.getItem('refresh_token') },
     // get expires_in() { return localStorage.getItem('refresh_in') },
     // get expires() { return localStorage.getItem('expires') },
@@ -31,7 +29,7 @@ export function getRedirectToSpotifyAuthorize() {
     .replace(/\+/g, '-')
     .replace(/\//g, '_');
 
-  Cookies.set('code_verifier', code_verifier);
+  localStorage.setItem('code_verifier', code_verifier);
 
     // Construct the authorization URL
   const authUrl = new URL(authorizationEndpoint)
@@ -41,7 +39,7 @@ export function getRedirectToSpotifyAuthorize() {
     scope: scope,
     code_challenge_method: 'S256',
     code_challenge: code_challenge_base64,
-    redirect_uri: redirectUrl,
+    redirect_uri: redirectUri,
   };
 
   authUrl.search = new URLSearchParams(params).toString();
@@ -50,7 +48,7 @@ export function getRedirectToSpotifyAuthorize() {
 
 export async function getAccessToken(code) {
   // Get the code verifier from cookie
-  const code_verifier = Cookies.get('code_verifier');
+  const code_verifier = localStorage.getItem('code_verifier');
   console.log(`code: ${code}`)
   console.log(`code_verifier: ${code_verifier}`)
 
@@ -59,7 +57,7 @@ export async function getAccessToken(code) {
   params.append('client_id', clientId);
   params.append('grant_type', 'authorization_code');
   params.append('code', code);
-  params.append('redirect_uri', redirectUrl);
+  params.append('redirect_uri', redirectUri);
   params.append('code_verifier', code_verifier);
 
   // Make the request
@@ -73,11 +71,11 @@ export async function getAccessToken(code) {
 
   try {
     if (response.ok){
-        // If the request is successful, store the tokens in cookies and return the access token
+        // If the request is successful, store the tokens in local storage and return the access token
         const { access_token, refresh_token, expires_in } = await response.json();
-        Cookies.set('access_token', access_token, { expires: expires_in / 3600 / 24 });
-        Cookies.set('refresh_token', refresh_token);
-        Cookies.set('expires', new Date().getTime() + expires_in * 1000);
+        localStorage.setItem('access_token', access_token, { expires: expires_in / 3600 / 24 });
+        localStorage.setItem('refresh_token', refresh_token);
+        localStorage.setItem('expires', new Date().getTime() + expires_in * 1000);
         return access_token;
     } else{
         throw new Error(`Request error: ${response.status}`);

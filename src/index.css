@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: blueviolet;
+  background-image: url('background.jpeg');
+  background-position: center;
   box-sizing: border-box;
 }
 
