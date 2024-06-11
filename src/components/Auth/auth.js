@@ -12,6 +12,12 @@ export const AUTH = {
   getExpiry() {
     return localStorage.getItem('expires_in');
   },
+  setExpiry(expires_in) {
+    localStorage.setItem('expires_in', new Date().getTime() + expires_in * 1000);
+  },
+  setAccessToken(access_token) {
+    localStorage.setItem('access_token', access_token);
+  },
   // Implicit Grant Flow
   getRedirectToSpotifyAuthorize() {
     const authUrl = new URL(authorizationEndpoint)

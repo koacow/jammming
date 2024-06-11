@@ -4,8 +4,7 @@ import { SearchResults } from "../components/SearchResults/SearchResults";
 import { Playlist } from "../components/Playlist/Playlist";
 import { SearchBar } from "../components/SearchBar/SearchBar";
 import { fetchSongs } from "../utils/spotify.js";
-import { currentToken } from "../components/Auth/auth";
-import Cookies from "js-cookie";
+import { AUTH } from "../components/Auth/auth";
 import './Root.css';
 
 function Root(){
@@ -17,8 +16,10 @@ function Root(){
 
 
     useEffect(() => {
-        const access_token = localStorage.getItem("access_token");
-        if (access_token === null || access_token === undefined) {
+        const access_token = AUTH.getAccessToken();
+        const expiry_time = AUTH.getExpiry();
+        const currentTime = new Date().getTime();
+        if (!access_token || currentTime > expiry_time) {
             navigate("/login");
         }
 
@@ -52,10 +53,10 @@ function Root(){
                 <h1>Ja<span className="highlight">mmm</span>ing</h1>
             </div>
             <SearchBar searchForTracks={searchForTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <div className="container">
+            <main className="container">
                 <SearchResults filteredTracks={filteredTracks} setPlaylist={setPlaylist}/>
                 <Playlist playlist={playlist} setPlaylist={setPlaylist} playlistName={playlistName} setPlaylistName={setPlaylistName} />
-            </div>
+            </main>
         </div>
     )
 }
