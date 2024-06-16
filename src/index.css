@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background-image: url('background.jpeg');
+  background-size: repeat;
   background-position: center;
   box-sizing: border-box;
 }

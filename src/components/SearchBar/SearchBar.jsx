@@ -12,7 +12,7 @@ export function SearchBar({ searchForTracks, searchTerm, setSearchTerm }) {
     return (
         <div className="SearchBar">
             <form onSubmit={searchForTracks}>
-                <input type="text" placeholder="Let's look for some jams" value={searchTerm} onChange={handleChange} />
+                <input type="text" placeholder="Search..." value={searchTerm} onChange={handleChange} />
                 <FontAwesomeIcon className="search-icon" icon={faSearch} onClick={searchForTracks} />
             </form>
         </div>

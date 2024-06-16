@@ -1,7 +1,7 @@
 import React from 'react';
 import { Track } from '../Track/Track';
 
-export function SearchResults({ filteredTracks, setPlaylist }) {
+export function SearchResults({ filteredTracks, setFilteredTracks, setPlaylist }) {
     return (
         <div className='SearchResults'>
             <h2>Results</h2>
@@ -9,14 +9,16 @@ export function SearchResults({ filteredTracks, setPlaylist }) {
             {
                 filteredTracks && filteredTracks.map((track, index) => {
                     return (
-                        <Track setPlaylist={setPlaylist}
+                        <Track
+                        setFilteredTracks={setFilteredTracks} 
+                        setPlaylist={setPlaylist}
                         key={index}
                         name={track.name}
                         artist={track.artist}
                         album={track.album}
                         id={track.id}
                         uri={track.uri}
-                        src={track.images[2].url}
+                        src={track.images[1].url}
                          />
                     )
                 })

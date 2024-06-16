@@ -1,7 +1,6 @@
 const { clientId } = require('./keys') || ''; // YOUR CLIENT ID GOES HERE
 const redirectUri = 'http://localhost:3000/login';        // your redirect URL - must be localhost URL and/or HTTPS
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
-const tokenEndpoint = "https://accounts.spotify.com/api/token";
 const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
 
 
@@ -10,13 +9,16 @@ export const AUTH = {
     return localStorage.getItem('access_token');
   },
   getExpiry() {
-    return localStorage.getItem('expires_in');
+    return Number.parseInt(localStorage.getItem('expires_in'));
   },
   setExpiry(expires_in) {
     localStorage.setItem('expires_in', new Date().getTime() + expires_in * 1000);
   },
   setAccessToken(access_token) {
     localStorage.setItem('access_token', access_token);
+  },
+  clearLocalStorage() {
+    localStorage.clear();
   },
   // Implicit Grant Flow
   getRedirectToSpotifyAuthorize() {

@@ -9,10 +9,10 @@ export function LogIn(){
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.hash.substring(1));
-        console.log(params);
+        console.log(params.toString());
         const access_token = params.get('access_token');
         const expires_in = params.get('expires_in');
-        if (access_token) {
+        if (access_token && expires_in) {
             AUTH.setAccessToken(access_token);
             AUTH.setExpiry(expires_in);
             setIsLoggedin(true);

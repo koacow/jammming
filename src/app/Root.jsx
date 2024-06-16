@@ -20,6 +20,7 @@ function Root(){
         const expiry_time = AUTH.getExpiry();
         const currentTime = new Date().getTime();
         if (!access_token || currentTime > expiry_time) {
+            AUTH.clearLocalStorage();
             navigate("/login");
         }
 
@@ -54,7 +55,7 @@ function Root(){
             </div>
             <SearchBar searchForTracks={searchForTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <main className="container">
-                <SearchResults filteredTracks={filteredTracks} setPlaylist={setPlaylist}/>
+                <SearchResults filteredTracks={filteredTracks} setFilteredTracks={setFilteredTracks} setPlaylist={setPlaylist}/>
                 <Playlist playlist={playlist} setPlaylist={setPlaylist} playlistName={playlistName} setPlaylistName={setPlaylistName} />
             </main>
         </div>
