@@ -6,6 +6,12 @@
     flex-wrap: wrap;
 }
 
+.Track:hover{
+    background-color: hsla(0, 0%, 100%, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 .Track h2{
     margin-right: auto;
     margin-left: 1rem;
