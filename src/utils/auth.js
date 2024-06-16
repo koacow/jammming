@@ -1,4 +1,4 @@
-const { clientId } = require('./keys') || ''; // your clientId
+const { clientId } = require('./keys') || ''; // YOUR CLIENT ID GOES HERE
 const redirectUri = 'http://localhost:3000/login';        // your redirect URL - must be localhost URL and/or HTTPS
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";

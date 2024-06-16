@@ -4,7 +4,7 @@ import { SearchResults } from "../components/SearchResults/SearchResults";
 import { Playlist } from "../components/Playlist/Playlist";
 import { SearchBar } from "../components/SearchBar/SearchBar";
 import { fetchSongs } from "../utils/spotify.js";
-import { AUTH } from "../components/Auth/auth";
+import { AUTH } from "../utils/auth";
 import './Root.css';
 
 function Root(){

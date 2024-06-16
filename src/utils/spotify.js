@@ -1,5 +1,5 @@
 
-import { AUTH } from "../components/Auth/auth"
+import { AUTH } from "./auth"
 
 const fetchSongsEndpoint = (query) => `https://api.spotify.com/v1/search?type=track&q=${query}`
 const createPlaylistEndpoint = (userId) => `https://api.spotify.com/v1/users/${userId}/playlists`
