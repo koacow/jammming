@@ -8,21 +8,28 @@ export function Playlist({ playlist, setPlaylist, playlistName, setPlaylistName 
         setPlaylistName(e.target.value);
     }
 
-    const saveToSpotify = (e) => {
+    const saveToSpotify = async (e) => {
         e.preventDefault();
         // Call the Spotify API to save the playlist
-        const userId = getUserId();
-        const createSpotifyPlaylistResponse = createSpotifyPlaylist(playlistName, userId);
-        const playlistId = createSpotifyPlaylistResponse.id;
-        addToSpotifyPlaylist(playlistId, playlist);
-        setPlaylistName("");
-        setPlaylist([]);
+        if (!playlistName) {return alert('At least give it a name!');}
+        if (!playlist.length) {return alert('Add some tracks first!');}
+
+        try {
+            const userId = getUserId();
+            const createSpotifyPlaylistResponse = await createSpotifyPlaylist(playlistName, userId);
+            const playlistId = createSpotifyPlaylistResponse.id;
+            await addToSpotifyPlaylist(playlistId, playlist);
+            setPlaylistName("");
+            setPlaylist([]);
+        } catch (error) {
+            alert(`${error} - Please try again later.`);
+        }
     }
     
     return (
         <div className='Playlist'>
             <form onSubmit={saveToSpotify}>
-                <input type='text' placeholder='Give it a name?' value={playlistName} onChange={handleChange}/>
+                <input type='text' placeholder='Give it a name?' value={playlistName} onChange={handleChange} required />
                 <hr />
                 <TrackList playlist={playlist} setPlaylist={setPlaylist} />
                 <button type='submit'>SAVE TO SPOTIFY</button>
