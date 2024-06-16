@@ -28,7 +28,6 @@ export async function createSpotifyPlaylist(playlistName, userId) {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${access_token}`,
-            'Access-Control-Allow-Origin': window.location.origin
         },
         body: JSON.stringify({
             name: playlistName,
@@ -72,8 +71,8 @@ export async function getUserId() {
         }
     });
     if (response.ok) {
-        const json = response.json();
-        return json.id;
+        const json = await response.json();
+        return json.id.toString();
     } else {
         console.error(`Error fetching user: ${response.status}`);
         throw new Error(`Error fetching user: ${response.status}`);

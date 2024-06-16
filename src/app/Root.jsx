@@ -14,6 +14,7 @@ function Root(){
     const [searchTerm, setSearchTerm] = useState("");
     const [playlist, setPlaylist] = useState([]);
     const [playlistName, setPlaylistName] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
     const navigate = useNavigate();
 
 
@@ -35,6 +36,7 @@ function Root(){
             return;
         }
         try{
+            setIsSearching(true);
             const data = await fetchSongs(searchTerm);
             const tracks = data.tracks.items.map(track => {
                 return {
@@ -46,9 +48,11 @@ function Root(){
                     images: track.album.images
                 }
             });
+            setIsSearching(false);
             setFilteredTracks(tracks);
             setSearchTerm("");
         } catch (error) {
+            setIsSearching(false);
             alert(`${error} - Please try again later.`);
         }
     }
@@ -70,7 +74,7 @@ function Root(){
             </button>
             <SearchBar searchForTracks={searchForTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <main className="container">
-                <SearchResults filteredTracks={filteredTracks} setFilteredTracks={setFilteredTracks} setPlaylist={setPlaylist}/>
+                <SearchResults isSearching={isSearching} filteredTracks={filteredTracks} setFilteredTracks={setFilteredTracks} setPlaylist={setPlaylist}/>
                 <Playlist playlist={playlist} setPlaylist={setPlaylist} playlistName={playlistName} setPlaylistName={setPlaylistName} />
             </main>
         </div>

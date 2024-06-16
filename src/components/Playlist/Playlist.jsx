@@ -15,10 +15,11 @@ export function Playlist({ playlist, setPlaylist, playlistName, setPlaylistName 
         if (!playlist.length) {return alert('Add some tracks first!');}
 
         try {
-            const userId = getUserId();
+            const userId = await getUserId();
             const createSpotifyPlaylistResponse = await createSpotifyPlaylist(playlistName, userId);
             const playlistId = createSpotifyPlaylistResponse.id;
             await addToSpotifyPlaylist(playlistId, playlist);
+            alert('We made your playlist! Check your Spotify account!');
             setPlaylistName("");
             setPlaylist([]);
         } catch (error) {
